@@ -1,0 +1,59 @@
+.icons{
+			height: 20px;
+	     	width: 18px; 
+		}
+
+		.textEditorButtons{
+            background: white;
+
+			border-color: skyblue;
+			border-style: groove;
+			border-width: 1.5px;
+
+		}
+
+		.colorPicker{
+			background: white;
+			height: 15px;
+			width: 15px;
+			border-color: skyblue;
+			border-style: groove;
+			border-width: 1.5px;
+			
+		}
+
+		.description{
+			display: none;
+		}
+
+		#editorBody{
+            background: white;
+            padding: 4px;
+
+            width: 880px;
+
+            border-color: skyblue;
+			border-style: groove;
+			border-width: 3px;
+			
+		}
+
+		#richTextField{
+			height: 450px;
+			width: 855px;
+			padding: 10px;
+			padding-bottom: 3px;
+			border-style: groove;
+			border-radius: 5px;
+		}
+
+        #iconBar{
+        	padding: 3px;
+        	width: 870px;
+
+        	border-color: gray;
+			border-style: groove;
+			border-width: 1.5px;
+        }
+
+        

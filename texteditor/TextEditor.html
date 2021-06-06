@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Editor</title>
+     <link rel="stylesheet" type="text/css" href="css/textEditor.css">
+</head>
+<body onload="enableEditMode();">
+	<div id="editorBody">
+		<div id="iconBar">
+		 <button class="textEditorButtons" id="btnBold" data-tooltip="Bold" onclick="changeIn('bold')">
+		 	<svg class="icons">
+		 		<use href="#bold"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnItalic" onclick="changeIn('italic')">
+		 	<svg class="icons">
+		 		<use href="#italic"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnUnderline" onclick="changeIn('underline')">
+		 	<svg class="icons">
+		 		<use href="#underline"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnStrikethrough" onclick="changeIn('strikeThrough')">
+		 	<svg class="icons">
+		 		<use href="#strikethrough"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnJustifyleft" onclick="changeIn('justifyLeft')">
+		 	<svg class="icons">
+		 		<use href="#align-left"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnJustifycenter" onclick="changeIn('justifyCenter')">
+		 	<svg class="icons">
+		 		<use href="#align-right"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnJustifyright" onclick="changeIn('justifyRight')">
+		 	<svg class="icons">
+		 		<use href="#align-right"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnJustify" onclick="changeIn('justifyFull')">
+		 	<svg class="icons">
+		 		<use href="#justify"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnCut" onclick="changeIn('cut')">
+		 	<svg class="icons">
+		 		<use href="#cut"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnCopy" onclick="changeIn('copy')">
+		 	<svg class="icons">
+		 		<use href="#copy"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnIndent" onclick="changeIn('indent')">
+		 	<svg class="icons">
+		 		<use href="#indent"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnOutdent" onclick="changeIn('outdent')">
+		 	<svg class="icons">
+		 		<use href="#outdent"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnSubscript" onclick="changeIn('subscript')">
+		 	<svg class="icons">
+		 		<use href="#subscript"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnSuperscript" onclick="changeIn('superscript')">
+		 	<svg class="icons">
+		 		<use href="#subscript"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnUndo" onclick="changeIn('undo')">
+		 	<svg class="icons">
+		 		<use href="#undo"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnRedo" onclick="changeIn('redo')">
+		 	<svg class="icons">
+		 		<use href="#redo"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnUnorderdlist" onclick="changeIn('insertUnorderedList')">
+		 	<svg class="icons">
+		 		<use href="#list-ul"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnOrderedlist" onclick="changeIn('insertOrderedList')">
+		 	<svg class="icons">
+		 		<use href="#list-ol"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnParagraph" onclick="changeIn('insertParagraph')">
+		 	<svg class="icons">
+		 		<use href="#paragraph"></use>
+		 	</svg>
+		 </button>
+	     
+	     <select id="btnHeadeing" onchange="execCommandWithArg('formatBlock', this.value)">
+	     	<option value="H1">H1</option>
+	     	<option value="H2">H2</option>
+	     	<option value="H3">H3</option>
+	     	<option value="H4">H4</option>
+	     	<option value="H5">H5</option>
+	     	<option value="H6">H6</option>
+	     </select>
+
+		 <button class="textEditorButtons" id="btnHorizontalrule" onclick="changeIn('insertHorizontalRule')">HR</button>
+		 <button class="textEditorButtons" id="btnLink" onclick="changeIn('createLink', prompt('Enter a URL', 'http://'))">
+			<svg class="icons">
+		 		<use href="#link"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnUnlink" onclick="changeIn('unlink')">
+			<svg class="icons">
+		 		<use href="#unlink"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnCode" onclick="toggleSource()">
+			<svg class="icons">
+		 		<use href="#file-code"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnEdit" onclick="toggleEdit()">
+			<svg class="icons">
+		 		<use href="#edit"></use>
+		 	</svg>
+		 </button>
+		 <br>
+
+		 <select id="btnFontname" onchange="execCommandWithArg('fontName', this.value)">
+		 	<option value="Times New Roman">Times New Roman</optionu>
+		 	<option value="Arial">Arial</option>
+		 	<option value="Roboto">Roboto</option>
+		 	<option value="Courier New">Courier New</option>
+		 	<option value="Verdana">Verdana</option>
+		 	<option value="Georgia">Georgia</option>
+		 	<option value="Arial Black">Arial Black</option>
+		 </select>
+
+		 <select id="btnFontsize" onchange="execCommandWithArg('fontSize', this.value)">
+		 	<option value="1">1</option>
+		 	<option value="2">2</option>
+		 	<option value="3">3</option>
+		 	<option value="4">4</option>
+		 	<option value="5">5</option>
+		 	<option value="6">6</option>
+		 	<option value="7">7</option>
+		 </select>
+	     
+	     Font Color: <input id="btnFontcolor" class="colorPicker" type="Color" name="" onchange="execCommandWithArg('foreColor', this.value)">
+	     Background: <input id="btnBackcolor" class="colorPicker" type="Color" name="" onchange="execCommandWithArg('hiliteColor', this.value)">
+
+		 <button class="textEditorButtons" id="btnImage" onclick="execCommandWithArg('insertImage', prompt('Enter the Image URL.'))">
+			<svg class="icons">
+		 		<use href="#image"></use>
+		 	</svg>
+		 </button>
+		 <button class="textEditorButtons" id="btnSelectall" onclick="changeIn('selectAll')">
+			<svg class="icons">
+		 		<use href="#select-all"></use>
+		 	</svg>
+		 </button>
+
+		</div>
+      <textarea name="editorsText" class="description"></textarea>
+	  <iframe name="richTextField" id="richTextField"></iframe>
+    
+    </div>
+</body>
+</html>
+<script src="js/textEditor.js"></script>
+
+<svg>
+	<defs>
+		<symbol id="bold" viewBox="0 0 16 16">
+		  <path d="M8.21 13c2.106 0 3.412-1.087 3.412-2.823 0-1.306-.984-2.283-2.324-2.386v-.055a2.176 2.176 0 0 0 1.852-2.14c0-1.51-1.162-2.46-3.014-2.46H3.843V13H8.21zM5.908 4.674h1.696c.963 0 1.517.451 1.517 1.244 0 .834-.629 1.32-1.73 1.32H5.908V4.673zm0 6.788V8.598h1.73c1.217 0 1.88.492 1.88 1.415 0 .943-.643 1.449-1.832 1.449H5.907z"/>
+		</symbol>
+		<symbol id="italic" viewBox="0 0 16 16">
+		  <path d="M7.991 11.674 9.53 4.455c.123-.595.246-.71 1.347-.807l.11-.52H7.211l-.11.52c1.06.096 1.128.212 1.005.807L6.57 11.674c-.123.595-.246.71-1.346.806l-.11.52h3.774l.11-.52c-1.06-.095-1.129-.211-1.006-.806z"/>
+		</symbol>
+		<symbol id="strikethrough" viewBox="0 0 16 16">
+		  <path d="M6.333 5.686c0 .31.083.581.27.814H5.166a2.776 2.776 0 0 1-.099-.76c0-1.627 1.436-2.768 3.48-2.768 1.969 0 3.39 1.175 3.445 2.85h-1.23c-.11-1.08-.964-1.743-2.25-1.743-1.23 0-2.18.602-2.18 1.607zm2.194 7.478c-2.153 0-3.589-1.107-3.705-2.81h1.23c.144 1.06 1.129 1.703 2.544 1.703 1.34 0 2.31-.705 2.31-1.675 0-.827-.547-1.374-1.914-1.675L8.046 8.5H1v-1h14v1h-3.504c.468.437.675.994.675 1.697 0 1.826-1.436 2.967-3.644 2.967z"/>
+		</symbol>
+		<symbol id="underline" viewBox="0 0 16 16">
+		  <path d="M5.313 3.136h-1.23V9.54c0 2.105 1.47 3.623 3.917 3.623s3.917-1.518 3.917-3.623V3.136h-1.23v6.323c0 1.49-.978 2.57-2.687 2.57-1.709 0-2.687-1.08-2.687-2.57V3.136zM12.5 15h-9v-1h9v1z"/>
+		</symbol>
+		<symbol id="align-left" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+		</symbol>
+		<symbol id="align-right" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+		</symbol>
+		<symbol  id="justify" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+		</symbol>
+		<symbol  id="cut" viewBox="0 0 16 16">
+		  <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61 3.5 3.5zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0zm7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
+		</symbol>
+		<symbol id="copy" viewBox="0 0 16 16">
+		  <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
+		</symbol>
+		<symbol id="indent" viewBox="0 0 16 16">
+		  <path d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm.646 2.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L4.293 8 2.646 6.354a.5.5 0 0 1 0-.708zM7 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+		</symbol>
+		<symbol  id="outdent" viewBox="0 0 16 16">
+		  <path d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm10.646 2.146a.5.5 0 0 1 .708.708L11.707 8l1.647 1.646a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2zM2 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+		</symbol>
+		<symbol id="undo" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+		  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+		</symbol>
+		<symbol id="redo" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+		  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+		</symbol>
+		<symbol id="list-ul" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+		</symbol>
+		<symbol id="list-ol" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+		  <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"/>
+		</symbol>
+		<symbol id="paragraph" viewBox="0 0 16 16">
+		  <path d="M10.5 15a.5.5 0 0 1-.5-.5V2H9v12.5a.5.5 0 0 1-1 0V9H7a4 4 0 1 1 0-8h5.5a.5.5 0 0 1 0 1H11v12.5a.5.5 0 0 1-.5.5z"/>
+		</symbol>
+		<symbol id="link" viewBox="0 0 16 16">
+		  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+		  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+		</symbol>
+		<symbol id="file-code" viewBox="0 0 16 16">
+		  <path d="M6.646 5.646a.5.5 0 1 1 .708.708L5.707 8l1.647 1.646a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2zm2.708 0a.5.5 0 1 0-.708.708L10.293 8 8.646 9.646a.5.5 0 0 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"/>
+		  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+		</symbol>
+		<symbol id="edit" viewBox="0 0 16 16">
+		  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+		</symbol>
+		<symbol id="image" viewBox="0 0 16 16">
+		  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+		  <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
+		</symbol>
+		<symbol id="select-all" viewBox="0 0 16 16">
+		  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+		  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+		</symbol>
+		<symbol id="superscript" viewBox="0 0 512 512">
+		  <path d="M272 192h-67.8c-5.5 0-10.7 2.9-13.6 7.6l-40.3 65c-2.3 3.6-4.5 7.3-6.2 10.5-1.7-3.2-3.7-6.8-5.7-10.4l-39.9-65.1c-2.9-4.7-8.1-7.6-13.6-7.6H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h30.1l52.8 77.3L42.3 416H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h64c5.5 0 10.7-2.9 13.6-7.6l44.7-72.1c2.2-3.6 4.2-7.3 5.9-10.6 1.8 3.2 3.9 6.9 6.2 10.2l45.7 72.6c2.9 4.7 8 7.5 13.5 7.5H272c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-22l-58.6-84.3L244 256h28c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm224 64H395.2c3.5-10.5 18.8-21.3 36.3-32.4 16.6-10.6 35.5-22.6 50.3-38.9 17.5-19.1 25.9-40.2 25.9-64.6 0-60.6-50.7-88.1-97.8-88.1-42.5 0-76.4 22-94.4 50.4-4.7 7.3-2.6 17 4.6 21.9l30.3 20.3c7 4.7 16.5 3.1 21.6-3.6 8-10.4 18.8-18.2 31.7-18.2 19.4 0 26.3 12.9 26.3 23.9 0 36.2-119.4 57-119.4 160 0 6.7.6 13 1.4 19.3 1.1 8 7.8 13.9 15.9 13.9H496c8.8 0 16-7.2 16-16v-32c0-8.7-7.2-15.9-16-15.9z"/>
+		  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+		</symbol>
+		<symbol id="subscript" viewBox="0 0 512 512">
+		  <path d="M272 32h-67.8c-5.5 0-10.7 2.9-13.6 7.6l-40.3 65c-2.3 3.6-4.5 7.3-6.2 10.5-1.7-3.2-3.7-6.8-5.7-10.4L98.5 39.6c-2.9-4.7-8.1-7.6-13.6-7.6H16C7.2 32 0 39.2 0 48v32c0 8.8 7.2 16 16 16h30.1l52.8 77.3L42.3 256H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h64c5.5 0 10.7-2.9 13.6-7.6l44.7-72.1c2.2-3.6 4.2-7.3 5.9-10.6 1.8 3.2 3.9 6.9 6.2 10.2l45.7 72.6c2.9 4.7 8 7.5 13.5 7.5H272c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-22l-58.6-84.3L244 96h28c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16zm224 384H395.2c3.5-10.5 18.8-21.3 36.3-32.4 16.6-10.6 35.5-22.6 50.3-38.9 17.5-19.1 25.9-40.2 25.9-64.6 0-60.6-50.7-88.1-97.8-88.1-42.5 0-76.4 22-94.4 50.4-4.7 7.3-2.6 17 4.6 21.9l30.3 20.3c7 4.7 16.5 3.1 21.6-3.6 8-10.4 18.8-18.2 31.7-18.2 19.4 0 26.3 12.9 26.3 23.9 0 36.2-119.4 57-119.4 160 0 6.7.6 13 1.4 19.3 1.1 8 7.8 13.9 15.9 13.9H496c8.8 0 16-7.2 16-16v-32c0-8.7-7.2-15.9-16-15.9z"/>
+		  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+		</symbol>
+		<symbol id="unlink" viewBox="0 0 512 512">
+		  <path d="M304.083 405.907c4.686 4.686 4.686 12.284 0 16.971l-44.674 44.674c-59.263 59.262-155.693 59.266-214.961 0-59.264-59.265-59.264-155.696 0-214.96l44.675-44.675c4.686-4.686 12.284-4.686 16.971 0l39.598 39.598c4.686 4.686 4.686 12.284 0 16.971l-44.675 44.674c-28.072 28.073-28.072 73.75 0 101.823 28.072 28.072 73.75 28.073 101.824 0l44.674-44.674c4.686-4.686 12.284-4.686 16.971 0l39.597 39.598zm-56.568-260.216c4.686 4.686 12.284 4.686 16.971 0l44.674-44.674c28.072-28.075 73.75-28.073 101.824 0 28.072 28.073 28.072 73.75 0 101.823l-44.675 44.674c-4.686 4.686-4.686 12.284 0 16.971l39.598 39.598c4.686 4.686 12.284 4.686 16.971 0l44.675-44.675c59.265-59.265 59.265-155.695 0-214.96-59.266-59.264-155.695-59.264-214.961 0l-44.674 44.674c-4.686 4.686-4.686 12.284 0 16.971l39.597 39.598zm234.828 359.28l22.627-22.627c9.373-9.373 9.373-24.569 0-33.941L63.598 7.029c-9.373-9.373-24.569-9.373-33.941 0L7.029 29.657c-9.373 9.373-9.373 24.569 0 33.941l441.373 441.373c9.373 9.372 24.569 9.372 33.941 0z"/>
+		  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+		</symbol>
+	</defs>
+</svg>
+
